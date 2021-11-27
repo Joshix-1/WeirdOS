@@ -99,10 +99,27 @@ run(){
 
 check(){
 	echo	"!===== Starting System checks"
-	$CC -v
-	$CXX -v
-	$LD -v
-	$AS -v
+	if ! [ -x "$(command -v $CC)" ]; then
+    echo "Error: $CC is not installed." >&2
+    exit 1
+  fi
+  if ! [ -x "$(command -v $CXX)" ]; then
+    echo "Error: $CXX is not installed." >&2
+    exit 1
+  fi
+  if ! [ -x "$(command -v $LD)" ]; then
+    echo "Error: $LD is not installed." >&2
+    exit 1
+  fi
+	if ! [ -x "$(command -v $AS)" ]; then
+    echo "Error: $AS is not installed." >&2
+    exit 1
+  fi
+  if ! [ -x "$(command -v mkisofs)" ]; then
+    echo "Error: mkisofs is not installed." >&2
+    exit 1
+  fi
+	echo "\n!===== System Checks -> OK"
 }
 
 
