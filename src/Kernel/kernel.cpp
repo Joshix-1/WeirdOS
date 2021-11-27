@@ -1,10 +1,13 @@
 #include "Video/TextRenderer.h"
+#include "Std/log.h"
 
 // Main Kernel Function
 int main() {
+    log("Kernel > Booted up");
     TextRenderer renderer;
     // Initialize the New TextRenderer to the VGA Output Buffer
     renderer.init((unsigned char *) 0xb8000);
+    log("Kernel > TextRenderer Initialized");
     renderer.ClearScreen();
 
     // Print a Message to make sure the Kernel booted correctly
