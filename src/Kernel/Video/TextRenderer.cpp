@@ -15,9 +15,9 @@ void TextRenderer::printChar(char chr, unsigned char fg, unsigned char bg) {
             SetCursorPosition(Cursor - GetXPos());
             break;
         default:
-            SetCursorPosition(Cursor + 1);
             *(BUFFER + Cursor * 2) = chr;
             *(BUFFER + Cursor * 2 + 1) = fg | bg;   // Combine Colors to VGA Format
+            SetCursorPosition(Cursor + 1);
     }
 }
 
@@ -46,7 +46,7 @@ void TextRenderer::ClearScreen(unsigned char bg) {
         *i = '\0';
         *(i+1) = bg | 0x0F;
     }
-    SetCursorPosition(-1);
+    SetCursorPosition(0);
 }
 
 int TextRenderer::GetXPos(){
