@@ -1,5 +1,4 @@
 #include "kernel.h"
-#include "Video/TextRenderer.h"
 #include "Std/log.h"
 
 // Main Kernel Function

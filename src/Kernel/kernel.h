@@ -5,6 +5,8 @@
 #ifndef WEIRDOS_KERNEL_H
 #define WEIRDOS_KERNEL_H
 
+#include "Video/TextRenderer.h"
+
 #define kernel Kernel::Instance()
 
 class Kernel{
