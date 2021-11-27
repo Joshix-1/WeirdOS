@@ -6,10 +6,19 @@ void TextRenderer::init(unsigned char *buffer) {
     Cursor = 0;
 }
 
-void TextRenderer::printChar(char c, unsigned char color) {
-    *(BUFFER + Cursor * 2) = c;
-    *(BUFFER + Cursor * 2 + 1) = color;
-    SetCursorPosition(Cursor + 1);
+void TextRenderer::printChar(char chr, unsigned char fg, unsigned char bg) {
+    switch (chr) {
+        case '\n':
+            SetCursorPosition(Cursor + X_SIZE - GetXPos());
+            break;
+        case '\r':
+            SetCursorPosition(Cursor - GetXPos());
+            break;
+        default:
+            SetCursorPosition(Cursor + 1);
+            *(BUFFER + Cursor * 2) = chr;
+            *(BUFFER + Cursor * 2 + 1) = fg | bg;   // Combine Colors to VGA Format
+    }
 }
 
 void TextRenderer::SetCursorPosition(int position) {
@@ -23,22 +32,27 @@ void TextRenderer::SetCursorPosition(int position) {
     Cursor = position;
 }
 
-void TextRenderer::print(const char *str, unsigned char color) {
+void TextRenderer::print(const char *str, unsigned char fg, unsigned char bg) {
     // Iterate through all Chars of the Sting, till it's end ('\0')
     unsigned char* charPtr = (unsigned char*)str;
     while(*charPtr != 0){   // do till end of string reached
-        printChar(*charPtr, color); // Print out the Char
+        printChar(*charPtr, fg, bg); // Print out the Char
         charPtr++;
     }
 }
 
-void TextRenderer::ClearScreen(long long ClearColor) {
-    long long value = 0;
-    value += ClearColor << 8;
-    value += ClearColor << 24;
-    value += ClearColor << 40;
-    value += ClearColor << 56;
-    for(long long* i = (long long*)BUFFER; i < (long long*)(BUFFER + 4096); i++){
-        *i = value;
+void TextRenderer::ClearScreen(unsigned char bg) {
+    for(unsigned char* i = (unsigned char*)BUFFER; i < BUFFER + 4000; i+=2){
+        *i = '\0';
+        *(i+1) = bg | 0x0F;
     }
+    SetCursorPosition(-1);
+}
+
+int TextRenderer::GetXPos(){
+    return Cursor % X_SIZE;
+}
+
+int TextRenderer::GetYPos(){
+    return (int)(Cursor / X_SIZE);
 }

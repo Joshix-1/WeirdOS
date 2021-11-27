@@ -41,15 +41,21 @@
 
 
 class TextRenderer {
-    public:
+    private:
         unsigned char* BUFFER;
         int Cursor;
 
+        int X_SIZE = 80;
+        int Y_SIZE = 25;
+
+    public:
         void init(unsigned char* buffer);
-        void printChar(char c, unsigned char color);
+        void printChar(char c, unsigned char fg = FRONT_WHITE, unsigned char bg = BACK_BLACK);
         void SetCursorPosition(int position);
-        void print(const char* str, unsigned char color = FRONT_WHITE | FRONT_BLACK);
-        void ClearScreen(long long ClearColor = 0);
+        void print(const char* str, unsigned char fg = FRONT_WHITE, unsigned char bg = BACK_BLACK);
+        void ClearScreen(unsigned char bg = 0);
+        int GetXPos();
+        int GetYPos();
 };
 
 
