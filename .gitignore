@@ -1,0 +1,5 @@
+.idea
+build/iso
+build/share
+build/WeirdOS.iso
+serial.log
