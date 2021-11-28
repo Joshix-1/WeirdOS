@@ -6,12 +6,14 @@
 #define WEIRDOS_KERNEL_H
 
 #include "Video/TextRenderer.h"
+#include "Memory/Heap.h"
 
 #define kernel Kernel::Instance()
 
 class Kernel{
 public:
     TextRenderer renderer;
+    Heap heap;
 
     void main();
     static Kernel& Instance() {

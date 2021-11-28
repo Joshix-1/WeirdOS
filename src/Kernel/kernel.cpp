@@ -6,11 +6,15 @@ void Kernel::main() {
     log("Kernel > Booted up");
     // Initialize the New TextRenderer to the VGA Output Buffer
     renderer.init((unsigned char *) 0xb8000);
-    log("Kernel > TextRenderer Initialized");
     renderer.ClearScreen();
+    log("Kernel > TextRenderer Initialized");
 
     // Print a Message to make sure the Kernel booted correctly
     renderer.print("[ Kernel - Main ] Booted Up\n");
+
+    heap.InitializeHeap(0x100000, 0x100000);
+    log("Kernel > Heap Initialized");
+    renderer.print("[ Kernel - Main ] Heap Initialized");
 
     return;
 }
