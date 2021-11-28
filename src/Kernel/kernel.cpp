@@ -3,15 +3,14 @@
 
 // Initialize Basic System
 void Kernel::init(){
-    // Initialize the New TextRenderer to the VGA Output Buffer
-    renderer.init((unsigned char *) 0xb8000);
-    renderer.ClearScreen();
-    log("Kernel > init > TextRenderer Initialized");
-    renderer.print("[ Kernel - Init ] TextRenderer Initialized\n");
-
+    // Init Basic Memory Management
     heap.InitializeHeap(0x100000, 0x100000);
     log("Kernel > init > Heap Initialized");
-    renderer.print("[ Kernel - Init ] Heap Initialized\n");
+
+    // Initialize the New TextRenderer to the VGA Output Buffer
+    renderer.init();
+    renderer.ClearScreen();
+    log("Kernel > init > TextRenderer Initialized");
 }
 
 // Main Kernel Function

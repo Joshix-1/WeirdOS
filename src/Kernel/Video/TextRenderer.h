@@ -39,6 +39,8 @@
 #define BACK_BLINK_YELLOW 0xE0
 #define BACK_BLINK_WHITE  0xF0
 
+#define VGA_TEXT_BUFFER (unsigned char *) 0xb8000
+
 
 class TextRenderer {
     private:
@@ -49,13 +51,13 @@ class TextRenderer {
         int Y_SIZE = 25;
 
     public:
-        void init(unsigned char* buffer);
+        void init();
         void printChar(char c, unsigned char fg = FRONT_WHITE, unsigned char bg = BACK_BLACK);
-        void SetCursorPosition(int position);
         void print(const char* str, unsigned char fg = FRONT_WHITE, unsigned char bg = BACK_BLACK);
         void ClearScreen(unsigned char bg = 0);
         int GetXPos();
         int GetYPos();
+        void sync();
 };
 
 
