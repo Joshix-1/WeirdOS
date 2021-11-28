@@ -16,6 +16,8 @@ public:
     Heap heap;
 
     void main();
+    void init();
+
     static Kernel& Instance() {
         static Kernel singleton;
         return singleton;
