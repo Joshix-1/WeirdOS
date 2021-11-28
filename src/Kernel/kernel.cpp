@@ -18,9 +18,10 @@ void Kernel::main() {
     log("Kernel > main > Booted up");
 
     init();
+    renderer.printf("[ %cKernel%c - %cMain%c ] Init Finished\n", FRONT_CYAN | BACK_BLACK, STD_COLOR, FRONT_GREEN | BACK_BLACK, STD_COLOR);
 
     log("Kernel > main > Reached end of Kernel\n");
-    renderer.print("[ Kernel - Main ] Reached end of Kernel\n");
+    renderer.printf("[ %cKernel%c - %cMain%c ] %cWARNING:%c Reached end of Kernel\n", FRONT_CYAN | BACK_BLACK, STD_COLOR, FRONT_GREEN | BACK_BLACK, STD_COLOR, FRONT_RED | BACK_BLACK, STD_COLOR);
     return;
 }
 

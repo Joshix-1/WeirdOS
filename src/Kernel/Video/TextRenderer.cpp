@@ -2,13 +2,16 @@
 #include "../IO/IO.h"
 #include "../kernel.h"
 #include "../Memory/Memory.h"
+#include "../Std/log.h"
+#include "../Std/Convert.h"
+#include <cstdarg>
 
 void TextRenderer::init() {
     BUFFER = (unsigned char*)kernel.heap.malloc(4000);
     Cursor = 0;
 }
 
-void TextRenderer::printChar(char chr, unsigned char fg, unsigned char bg) {
+void TextRenderer::printChar(char chr, unsigned char color) {
     // SYNC AFTER CALLING THIS FUNCTION!!!
     switch (chr) {
         case '\n':
@@ -19,18 +22,43 @@ void TextRenderer::printChar(char chr, unsigned char fg, unsigned char bg) {
             break;
         default:
             *(BUFFER + Cursor * 2) = chr;
-            *(BUFFER + Cursor * 2 + 1) = fg | bg;   // Combine Colors to VGA Format
+            *(BUFFER + Cursor * 2 + 1) = color;   // Combine Colors to VGA Format
             Cursor++;
     }
 }
 
-void TextRenderer::print(const char *str, unsigned char fg, unsigned char bg) {
-    // Iterate through all Chars of the Sting, till it's end ('\0')
+void TextRenderer::printf(const char* str, ...) {
+    /*
+     * Formatting Codes:
+     * c - set Color till next %c
+     * i - print Integer
+     * f - print Float
+     * */
+    va_list valist;
     unsigned char* charPtr = (unsigned char*)str;
+    unsigned char color = STD_COLOR;
+
+    va_start(valist, str);
     while(*charPtr != 0){   // do till end of string reached
-        printChar(*charPtr, fg, bg); // Print out the Char
+        if (*charPtr == '%') {
+            char code = *(charPtr + 1);
+            switch (code) {
+                case 'c':
+                    color = va_arg(valist, int);
+                    break;
+                case 'i':
+                    printf(Convert::IntegerToString(va_arg(valist, int)));
+                    break;
+                case 'f':
+                    printf(Convert::FloatToString(va_arg(valist, double), 2));
+            }
+            charPtr++;
+        }else {
+            printChar(*charPtr, color); // Print out the Char
+        }
         charPtr++;
     }
+    va_end(valist);
     sync();
 }
 

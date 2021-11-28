@@ -39,6 +39,8 @@
 #define BACK_BLINK_YELLOW 0xE0
 #define BACK_BLINK_WHITE  0xF0
 
+#define STD_COLOR FRONT_WHITE | BACK_BLACK
+
 #define VGA_TEXT_BUFFER (unsigned char *) 0xb8000
 
 
@@ -52,8 +54,8 @@ class TextRenderer {
 
     public:
         void init();
-        void printChar(char c, unsigned char fg = FRONT_WHITE, unsigned char bg = BACK_BLACK);
-        void print(const char* str, unsigned char fg = FRONT_WHITE, unsigned char bg = BACK_BLACK);
+        void printChar(char chr, unsigned char color = STD_COLOR);
+        void printf(const char* str, ...);
         void ClearScreen(unsigned char bg = 0);
         int GetXPos();
         int GetYPos();
