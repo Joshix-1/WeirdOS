@@ -6,7 +6,7 @@
 #define WEIRDOS_LOG_H
 
 
-void log(const char* str);
+void logf(const char* str, ...);
 
 
 #endif //WEIRDOS_LOG_H
