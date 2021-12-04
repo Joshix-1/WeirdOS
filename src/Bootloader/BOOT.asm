@@ -12,8 +12,8 @@ call ReadDisk
 
 jmp PROGRAM_SPACE
 
-%include "Bootloader/Sector1/print.asm"
-%include "Bootloader/Sector1/diskread.asm"
+%include "Sector1/print.asm"
+%include "Sector1/diskread.asm"
 
 WelcomeMsg:
     db "!===== WeirdOS - Bootloader =====!", 0x0A, 0x0D, 0

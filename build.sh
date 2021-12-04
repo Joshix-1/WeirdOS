@@ -12,6 +12,7 @@ AS="nasm"
 # ======== Flags
 CXX_FLAGS="-Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -nostdlib"
 CC_FLAGS="-Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -nostdlib"
+AS_FLAGS="-f elf64"
 
 echo	"#########################################"
 echo	"##   Welcome to WeirdOS build Script   ##"
@@ -29,33 +30,41 @@ build(){
   mkdir build/share
   mkdir build/share/sources
 
-	cd src
+	cd src/Bootloader
 
   # Compile the Bootloader
-	echo  "   ==> Compiling ASM Files"
+	echo  "   ==> Compiling Bootloader"
 	echo "       > Compiling BOOT.asm"
-  $AS Bootloader/BOOT.asm -f bin -o ../build/share/BOOT.bin
+  $AS BOOT.asm -f bin -o ../../build/share/BOOT.bin
   echo "       > Compiling KernelLoader.asm"
-  $AS Bootloader/KernelLoader.asm -f elf64 -o ../build/share/KERNEL_LOADER.o
+  $AS KernelLoader.asm -f elf64 -o ../../build/share/KERNEL_LOADER.o
   echo
 
+  cd ../Kernel
 	# Recursion is Wonderful
+	echo	"   ==> Compiling ASM Files"
+	for f in $(find -name '*.asm'); do
+    echo "       > Compiling $f"
+    $AS $f $AS_FLAGS -o ../build/share/sources/`basename $f`.o
+	done
+	echo
+
 	echo	"   ==> Compiling C Files"
 	for f in $(find -name '*.c'); do
     echo "       > Compiling $f"
-    $CC $CC_FLAGS -o ../build/share/sources/`basename $f`.o -c $f
+    $CC $CC_FLAGS -o ../../build/share/sources/`basename $f`.o -c $f
 	done
 	echo
 
 	echo	"   ==> Compiling C++ Files"
 	for f in $(find -name '*.cpp'); do
     echo "       > Compiling $f"
-    $CXX $CXX_FLAGS -o ../build/share/sources/`basename $f`.o -c $f
+    $CXX $CXX_FLAGS -o ../../build/share/sources/`basename $f`.o -c $f
 	done
 
 	echo
 
-	cd ..
+	cd ../..
 
   # Create an Archive (KERNEL.a) with all the Object Files in it
 	echo  "   ==> Combining Object Files"

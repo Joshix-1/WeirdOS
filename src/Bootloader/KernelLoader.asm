@@ -1,8 +1,8 @@
 jmp EnterProtectedMode
 
-%include "Bootloader/Sector2/gdt.asm"
-%include "Bootloader/Sector1/print.asm"
-%include "Bootloader/Sector2/DetectMemory.asm"
+%include "Sector2/gdt.asm"
+%include "Sector1/print.asm"
+%include "Sector2/DetectMemory.asm"
 
 EnterProtectedMode:
     mov bx, Stage2SuccessString
@@ -23,8 +23,8 @@ EnableA20:
     ret
 
 [bits 32]
-%include "Bootloader/Sector2/cpuID.asm"
-%include "Bootloader/Sector2/SimplePaging.asm"
+%include "Sector2/cpuID.asm"
+%include "Sector2/SimplePaging.asm"
 
 
 StartProtectedMode:
