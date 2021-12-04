@@ -9,11 +9,6 @@ LD="ld"
 EMU="qemu-system-x86_64"
 AS="nasm"
 
-# ======== Flags
-CXX_FLAGS="-Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -nostdlib"
-CC_FLAGS="-Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -nostdlib"
-AS_FLAGS="-f elf64"
-
 echo	"#########################################"
 echo	"##   Welcome to WeirdOS build Script   ##"
 echo	"#########################################"
@@ -45,21 +40,21 @@ build(){
 	echo	"   ==> Compiling ASM Files"
 	for f in $(find -name '*.asm'); do
     echo "       > Compiling $f"
-    $AS $f $AS_FLAGS -o ../build/share/sources/`basename $f`.o
+    $AS $f -f elf64 -o ../../build/share/sources/`basename $f`.o
 	done
 	echo
 
 	echo	"   ==> Compiling C Files"
 	for f in $(find -name '*.c'); do
     echo "       > Compiling $f"
-    $CC $CC_FLAGS -o ../../build/share/sources/`basename $f`.o -c $f
+    $CC -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -nostdlib -o ../../build/share/sources/`basename $f`.o -c $f
 	done
 	echo
 
 	echo	"   ==> Compiling C++ Files"
 	for f in $(find -name '*.cpp'); do
     echo "       > Compiling $f"
-    $CXX $CXX_FLAGS -o ../../build/share/sources/`basename $f`.o -c $f
+    $CXX -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -nostdlib -w -o ../../build/share/sources/`basename $f`.o -c $f
 	done
 
 	echo
