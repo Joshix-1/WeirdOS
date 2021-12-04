@@ -5,7 +5,6 @@
 #ifndef WEIRDOS_LOG_H
 #define WEIRDOS_LOG_H
 
-
 void logf(const char* str, ...);
 
 

@@ -13,6 +13,7 @@
 class Kernel{
 public:
     TextRenderer renderer;
+    TextRenderer LogRenderer;
     Heap heap;
 
     void main();

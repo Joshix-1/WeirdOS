@@ -5,7 +5,8 @@
 void Kernel::init(){
     // Init Basic Memory Management
     heap.InitializeHeap(0x100000, 0x100000);
-    logf("Kernel > init > Heap Initialized");
+
+    LogRenderer.init();
 
     // Initialize the New TextRenderer to the VGA Output Buffer
     renderer.init();
@@ -15,12 +16,10 @@ void Kernel::init(){
 
 // Main Kernel Function
 void Kernel::main() {
-    logf("Kernel > main > Booted up");
-
     init();
     renderer.printf("[ %cKernel%c - %cMain%c ] Init Finished\n", FRONT_CYAN | BACK_BLACK, STD_COLOR, FRONT_GREEN | BACK_BLACK, STD_COLOR);
 
-    logf("Kernel > main > Reached end of Kernel\n");
+    logf("Kernel > main > Reached end of Kernel");
     renderer.printf("[ %cKernel%c - %cMain%c ] %cWARNING:%c Reached end of Kernel\n", FRONT_CYAN | BACK_BLACK, STD_COLOR, FRONT_GREEN | BACK_BLACK, STD_COLOR, FRONT_RED | BACK_BLACK, STD_COLOR);
     return;
 }
