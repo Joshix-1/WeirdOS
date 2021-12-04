@@ -2,7 +2,7 @@
 
 WeirdOS is a basic x86_64 Operating System written in C++
 
-WeidOS is also a try to make a friend an OSdev.
+WeirdOS is also a try to make a friend an OSdev.
 
 ## Building Dependencies
 * gcc (and g++)
