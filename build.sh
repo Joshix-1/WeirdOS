@@ -54,7 +54,7 @@ build(){
 	echo	"   ==> Compiling C++ Files"
 	for f in $(find -name '*.cpp'); do
     echo "       > Compiling $f"
-    $CXX -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -nostdlib -w -o ../../build/share/sources/`basename $f`.o -c $f
+    $CXX -Ttext 0x8000 -ffreestanding -mno-red-zone -m64 -nostdlib -o ../../build/share/sources/`basename $f`.o -c $f
 	done
 
 	echo

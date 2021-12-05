@@ -7,6 +7,7 @@
 
 #include "Video/TextRenderer.h"
 #include "Memory/Heap.h"
+#include "Interrupts/Keyboard.h"
 
 #define kernel Kernel::Instance()
 
@@ -15,6 +16,7 @@ public:
     TextRenderer renderer;
     TextRenderer LogRenderer;
     Heap heap;
+    Keyboard::KeyboardData keyboard;
 
     void main();
     void init();

@@ -1,5 +1,7 @@
 #include "kernel.h"
 #include "Std/log.h"
+#include "Interrupts/IDT.h"
+#include "Interrupts/Keyboard.h"
 
 // Initialize Basic System
 void Kernel::init(){
@@ -12,15 +14,22 @@ void Kernel::init(){
     renderer.init();
     renderer.ClearScreen();
     logf("Kernel > init > TextRenderer Initialized");
+
+    InitializeIDT();
+    logf("Kernel > init > IDT Initialized");
 }
 
 // Main Kernel Function
 void Kernel::main() {
     init();
-    renderer.printf("[ %cKernel%c - %cMain%c ] Init Finished\n", FRONT_CYAN | BACK_BLACK, STD_COLOR, FRONT_GREEN | BACK_BLACK, STD_COLOR);
+    renderer.printf("[ %cKernel%c - %cMain%c ] Init Finished\n", FRONT_CYAN | BACK_BLACK,
+                    STD_COLOR, FRONT_GREEN | BACK_BLACK, STD_COLOR);
 
-    logf("Kernel > main > Reached end of Kernel");
-    renderer.printf("[ %cKernel%c - %cMain%c ] %cWARNING:%c Reached end of Kernel\n", FRONT_CYAN | BACK_BLACK, STD_COLOR, FRONT_GREEN | BACK_BLACK, STD_COLOR, FRONT_RED | BACK_BLACK, STD_COLOR);
+
+    // enable Keyboard Input
+    keyboard.enabled = true;
+    // set mode to BasicKeyboardHandler
+    keyboard.mode = 1;
     return;
 }
 
