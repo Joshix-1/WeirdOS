@@ -85,7 +85,7 @@ buildimg(){
 
   # Clear ISO Image root Folder
   rm -rf iso/boot
-  mkdir iso/boot
+  mkdir -p iso/boot
 
   # Create ISO Image
   echo "   ==> Generating ISO image"
