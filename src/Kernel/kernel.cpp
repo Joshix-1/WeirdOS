@@ -8,10 +8,10 @@ void Kernel::init(){
     // Init Basic Memory Management
     heap.InitializeHeap(0x100000, 0x100000);
 
-    LogRenderer.init();
+    LogRenderer.init("Logs");
 
     // Initialize the New TextRenderer to the VGA Output Buffer
-    renderer.init();
+    renderer.init("Stdout");
     renderer.ClearScreen();
     MainRenderer = &renderer;
     logf("Kernel > init > TextRenderer Initialized");

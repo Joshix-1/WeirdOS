@@ -6,7 +6,8 @@
 #include "../Std/Convert.h"
 #include <cstdarg>
 
-void TextRenderer::init() {
+void TextRenderer::init(const char* _name) {
+    name = _name;
     BUFFER = (unsigned char*)kernel.heap.malloc(4000);
     Cursor = 0;
 }

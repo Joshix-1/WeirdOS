@@ -53,7 +53,9 @@ class TextRenderer {
         int Y_SIZE = 25;
 
     public:
-        void init();
+        const char* name;
+
+        void init(const char* name = "TextRenderer");
         void printChar(char chr, unsigned char color = STD_COLOR);
         void printf(const char* str, ...);
         void ClearScreen(unsigned char bg = 0);
