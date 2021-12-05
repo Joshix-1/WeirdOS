@@ -80,8 +80,10 @@ int TextRenderer::GetYPos(){
 }
 
 void TextRenderer::sync() {
-    // Swap the Buffer to VGA output
-    memcpy(VGA_TEXT_BUFFER, BUFFER, 4000);
+    if (kernel.MainRenderer == this) {
+        // Swap the Buffer to VGA output
+        memcpy(VGA_TEXT_BUFFER, BUFFER, 4000);
+    }
     // Do some weird magic to tell the Computer to move the Cursor to the position
     IO::outb(0x3D4, 0x0F);
     IO::outb(0x3D5, (unsigned char)(Cursor & 0xFF));

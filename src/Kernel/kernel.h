@@ -15,6 +15,7 @@ class Kernel{
 public:
     TextRenderer renderer;
     TextRenderer LogRenderer;
+    TextRenderer* MainRenderer;
     Heap heap;
     Keyboard::KeyboardData keyboard;
 

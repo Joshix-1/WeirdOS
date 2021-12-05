@@ -13,6 +13,7 @@ void Kernel::init(){
     // Initialize the New TextRenderer to the VGA Output Buffer
     renderer.init();
     renderer.ClearScreen();
+    MainRenderer = &renderer;
     logf("Kernel > init > TextRenderer Initialized");
 
     InitializeIDT();
@@ -28,7 +29,7 @@ void Kernel::main() {
 
     // enable Keyboard Input
     keyboard.enabled = true;
-    // set mode to BasicKeyboardHandler
+    // set mode to StartupKeyboardHandler
     keyboard.mode = 1;
     return;
 }

@@ -11,10 +11,13 @@ void BasicKeyboardHandler(unsigned char scancode, unsigned char chr){
 void StartupKeyboardHandler(unsigned char scancode, unsigned char chr){
     switch(chr){
         case 'l':
+            kernel.MainRenderer = &kernel.LogRenderer;
             kernel.LogRenderer.sync();
             break;
         case 'm':
+            kernel.MainRenderer = &kernel.renderer;
             kernel.renderer.sync();
+            break;
     }
 }
 
