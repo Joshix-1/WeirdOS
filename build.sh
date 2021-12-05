@@ -21,9 +21,9 @@ build(){
 	echo	"!===== Building WeirdOS"
 
   # Cleaning up Objects Folder
-  rm -r build/share
-  mkdir build/share
-  mkdir build/share/sources
+  rm -rf build/share
+  mkdir -p build/share
+  mkdir -p build/share/sources
 
 	cd src/Bootloader
 
@@ -84,7 +84,7 @@ buildimg(){
   cat share/BOOT.bin share/KERNEL.bin > share/WEIRD_OS.bin
 
   # Clear ISO Image root Folder
-  rm -r iso/boot
+  rm -rf iso/boot
   mkdir iso/boot
 
   # Create ISO Image
