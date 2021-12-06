@@ -51,6 +51,7 @@ class TextRenderer {
 
         int X_SIZE = 80;
         int Y_SIZE = 25;
+        int BitsPerPixel = 2;
 
     public:
         const char* name;
@@ -62,6 +63,7 @@ class TextRenderer {
         int GetXPos();
         int GetYPos();
         void sync();
+        void scroll();
 };
 
 
