@@ -99,6 +99,7 @@ void TextRenderer::scroll(){
     memcpy(Clipboard, (BUFFER+X_SIZE * BitsPerPixel), (X_SIZE * (Y_SIZE-1) * BitsPerPixel));
     ClearScreen();
     memcpy(BUFFER, Clipboard, (X_SIZE * (Y_SIZE-1) * BitsPerPixel));
+    kernel.heap.free(Clipboard);
     Cursor -= X_SIZE;
     sync();
     return;
