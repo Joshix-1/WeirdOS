@@ -47,6 +47,7 @@
 class TextRenderer {
     private:
         unsigned char* BUFFER;
+        unsigned char color = STD_COLOR;
         int Cursor;
 
         int X_SIZE = 80;
@@ -64,6 +65,7 @@ class TextRenderer {
         int GetYPos();
         void sync();
         void scroll();
+        void setCursor(unsigned char pos);
 };
 
 

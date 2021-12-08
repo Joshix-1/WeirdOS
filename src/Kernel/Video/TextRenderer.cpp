@@ -40,7 +40,6 @@ void TextRenderer::printf(const char* str, ...) {
      * */
     va_list valist;
     unsigned char* charPtr = (unsigned char*)str;
-    unsigned char color = STD_COLOR;
 
     va_start(valist, str);
     while(*charPtr != 0){   // do till end of string reached
@@ -86,12 +85,12 @@ void TextRenderer::sync() {
     if (kernel.MainRenderer == this) {
         // Swap the Buffer to VGA output
         memcpy(VGA_TEXT_BUFFER, BUFFER, (X_SIZE * Y_SIZE * BitsPerPixel));
+        // Do some weird magic to tell the Computer to move the Cursor to the position
+        IO::outb(0x3D4, 0x0F);
+        IO::outb(0x3D5, (unsigned char)(Cursor & 0xFF));
+        IO::outb(0x3D4, 0x0E);
+        IO::outb(0x3D5, (unsigned char)(Cursor >> 8) & 0xFF);
     }
-    // Do some weird magic to tell the Computer to move the Cursor to the position
-    IO::outb(0x3D4, 0x0F);
-    IO::outb(0x3D5, (unsigned char)(Cursor & 0xFF));
-    IO::outb(0x3D4, 0x0E);
-    IO::outb(0x3D5, (unsigned char)(Cursor >> 8) & 0xFF);
 }
 
 void TextRenderer::scroll(){
@@ -103,4 +102,9 @@ void TextRenderer::scroll(){
     Cursor -= X_SIZE;
     sync();
     return;
+}
+
+void TextRenderer::setCursor(unsigned char pos) {
+    Cursor = pos;
+    sync();
 }

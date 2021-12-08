@@ -12,5 +12,6 @@ struct IDT64{
 };
 
 void InitializeIDT();
+void InitializeFaults();
 
 #endif
