@@ -135,95 +135,96 @@ extern "C" void unknown_handler(){
 /* ========== FAULT's ========== */
 
 extern "C" void isr0_handler(){
-    Panic::Throw("CPU Threw Fault: Divide-by-zero Error", 0);
+    Panic::Throw("CPU Threw Fault(0x00): Divide-by-zero Error", 0);
 }
 extern "C" void isr2_handler(){
-    Panic::Throw("CPU Threw Fault: Non-maskable Interrupt", 0);
+    Panic::Throw("CPU Threw Fault(0x20): Non-maskable Interrupt", 0);
 }
 extern "C" void isr3_handler(){
-    Panic::Throw("CPU Threw Fault: Breakpoint", 0);
+    Panic::Throw("CPU Threw Fault(0x30): Breakpoint", 0);
 }
 extern "C" void isr4_handler(){
-    Panic::Throw("CPU Threw Fault: Overflow", 0);
+    Panic::Throw("CPU Threw Fault(0x40): Overflow", 0);
 }
 extern "C" void isr5_handler(){
-    Panic::Throw("CPU Threw Fault: Bound Range Exceeded", 0);
+    Panic::Throw("CPU Threw Fault(0x50): Bound Range Exceeded", 0);
 }
 extern "C" void isr6_handler(){
-    Panic::Throw("CPU Threw Fault: Invalid Opcode", 0);
+    Panic::Throw("CPU Threw Fault(0x60): Invalid Opcode", 0);
 }
 extern "C" void isr7_handler(){
-    Panic::Throw("CPU Threw Fault: Device Not Available", 0);
+    Panic::Throw("CPU Threw Fault(0x70): Device Not Available", 0);
 }
 extern "C" void isr8_handler(){
-    Panic::Throw("CPU Threw Fault: Double Fault", 0);
+    Panic::Throw("CPU Threw Fault(0x80): Double Fault", 0);
 }
 extern "C" void isr9_handler(){
-    Panic::Throw("CPU Threw Fault: Coprocessor Segment Overrun", 0);
+    Panic::Throw("CPU Threw Fault(0x90): Coprocessor Segment Overrun", 0);
 }
 extern "C" void isr10_handler(){
-    Panic::Throw("CPU Threw Fault: Invalid TSS", 0);
+    Panic::Throw("CPU Threw Fault(0xA0): Invalid TSS", 0);
 }
 extern "C" void isr11_handler(){
-    Panic::Throw("CPU Threw Fault: Segment Not Present", 0);
+    Panic::Throw("CPU Threw Fault(0xB0): Segment Not Present", 0);
 }
 extern "C" void isr12_handler(){
-    Panic::Throw("CPU Threw Fault: Stack-Segment Fault", 0);
+    Panic::Throw("CPU Threw Fault(0xC0): Stack-Segment Fault", 0);
 }
 extern "C" void isr13_handler(){
-    Panic::Throw("CPU Threw Fault: General Protection Fault", 0);
+    Panic::Throw("CPU Threw Fault(0xD0): General Protection Fault", 0);
 }
 extern "C" void isr14_handler(){
-    Panic::Throw("CPU Threw Fault: Page Fault", 0);
+    Panic::Throw("CPU Threw Fault(0xE0): Page Fault", 0);
 }
 extern "C" void isr15_handler(){
-    Panic::Throw("CPU Threw Fault: Reserved", 0);
+    Panic::Throw("CPU Threw Fault(0xF0): Reserved", 0);
 }
 extern "C" void isr16_handler(){
-    Panic::Throw("CPU Threw Fault: x87 Floating-Point Exception \t", 0);
+    Panic::Throw("CPU Threw Fault(0x10): x87 Floating-Point Exception \t", 0);
 }
 extern "C" void isr17_handler(){
-    Panic::Throw("CPU Threw Fault: Alignment Check", 0);
+    Panic::Throw("CPU Threw Fault(0x11): Alignment Check", 0);
 }
 extern "C" void isr18_handler(){
-    Panic::Throw("CPU Threw Fault: Machine Check", 0);
+    Panic::Throw("CPU Threw Fault(0x12): Machine Check", 0);
 }
 extern "C" void isr19_handler(){
-    Panic::Throw("CPU Threw Fault: SIMD Floating-Point Exception", 0);
+    Panic::Throw("CPU Threw Fault(0x13): SIMD Floating-Point Exception", 0);
 }
 extern "C" void isr20_handler(){
-    Panic::Throw("CPU Threw Fault: Virtualization Exception", 0);
+    Panic::Throw("CPU Threw Fault(0x14): Virtualization Exception", 0);
 }
 extern "C" void isr21_handler(){
-    Panic::Throw("CPU Threw Fault: Control Protection Exception", 0);
+    Panic::Throw("CPU Threw Fault(0x15): Control Protection Exception", 0);
 }
 extern "C" void isr22_handler(){
-    Panic::Throw("CPU Threw Fault: Reserved", 0);
+    Panic::Throw("CPU Threw Fault(0x16): Reserved", 0);
 }
 extern "C" void isr23_handler(){
-    Panic::Throw("CPU Threw Fault: Reserved", 0);
+    Panic::Throw("CPU Threw Fault(0x17): Reserved", 0);
 }
 extern "C" void isr24_handler(){
-    Panic::Throw("CPU Threw Fault: Reserved", 0);
+    Panic::Throw("CPU Threw Fault(0x18): Reserved", 0);
 }
 extern "C" void isr25_handler(){
-    Panic::Throw("CPU Threw Fault: Reserved", 0);
+    Panic::Throw("CPU Threw Fault(0x19): Reserved", 0);
 }
 extern "C" void isr26_handler(){
-    Panic::Throw("CPU Threw Fault: Reserved", 0);
+    Panic::Throw("CPU Threw Fault(0x1A): Reserved", 0);
 }
 extern "C" void isr27_handler(){
-    Panic::Throw("CPU Threw Fault: Reserved", 0);
+    Panic::Throw("CPU Threw Fault(0x1B): Reserved", 0);
 }
 extern "C" void isr28_handler(){
-    Panic::Throw("CPU Threw Fault: Hypervisor Injection Exception", 0);
+    Panic::Throw("CPU Threw Fault(0x1C): Hypervisor Injection Exception", 0);
 }
 extern "C" void isr29_handler(){
-    Panic::Throw("CPU Threw Fault: VMM Communication Exception", 0);
+    Panic::Throw("CPU Threw Fault(0x1D): VMM Communication Exception", 0);
 }
 extern "C" void isr30_handler(){
-    Panic::Throw("CPU Threw Fault: Security Exception", 0);
+    Panic::Throw("CPU Threw Fault(0x1E): Security Exception", 0);
 }
 extern "C" void isr31_handler(){
-    Panic::Throw("CPU Threw Fault: Reserved", 0);
+    Panic::Throw("CPU Threw Fault(0x1F): Reserved", 0);
 }
+
