@@ -16,7 +16,7 @@ WeirdOS is also a try to make a friend an OSdev.
 ### Standard
 To build WeirdOS, just run:
 ```shell
-bash build.sh
+./build.sh
 ```
 This will:
 * Check the Build Dependencies
